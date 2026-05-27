@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>English Knowledge Pipeline</title>
+    <link rel="stylesheet" href="/admin/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel config">
+        <h1>English video pipeline</h1>
+        <label>
+          Topic
+          <textarea id="topic" rows="3">Present perfect vs past simple</textarea>
+        </label>
+        <label>
+          Level
+          <input id="level" value="A2-B1" disabled />
+        </label>
+        <label>
+          Tone
+          <input id="tone" value="rõ ràng, gần gũi, có ví dụ thực tế" disabled />
+        </label>
+        <div class="actions">
+          <button class="primary-action" data-action="run-lesson">Tạo video</button>
+        </div>
+      </section>
+
+      <section class="panel status">
+        <div class="status-head">
+          <h2>Status</h2>
+          <span id="status-pill">idle</span>
+        </div>
+        <div id="asset-summary" class="asset-summary"></div>
+        <div class="tabs">
+          <button class="active" data-tab="logs">Logs</button>
+          <button data-tab="lesson">Lesson JSON</button>
+          <button data-tab="assets">Assets</button>
+        </div>
+        <pre id="tab-content"></pre>
+      </section>
+
+      <section class="panel preview">
+        <div class="status-head">
+          <h2>Preview</h2>
+          <button id="refresh-preview">Refresh</button>
+        </div>
+        <div class="preview-shell">
+          <iframe id="preview-frame" src="/preview"></iframe>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/admin/app.js"></script>
+  </body>
+</html>

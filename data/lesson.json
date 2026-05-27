@@ -1,0 +1,290 @@
+{
+  "topic": "Mệnh đề quan hệ",
+  "title": "Mệnh đề quan hệ: Nối câu tự nhiên như người bản xứ",
+  "audience": "người Việt học tiếng Anh",
+  "level": "A2-B1",
+  "duration_target_seconds": 180,
+  "learning_goals": [
+    "Phân biệt who, which, that, where, when trong câu thực tế",
+    "Biết khi nào bỏ được đại từ quan hệ",
+    "Tránh lỗi thừa chủ ngữ khi dùng mệnh đề quan hệ",
+    "Áp dụng vào câu nói hàng ngày một cách tự nhiên"
+  ],
+  "recap": [
+    "Chọn đại từ dựa vào danh từ: người dùng who/that, vật dùng which/that, địa điểm dùng where, thời gian dùng when",
+    "Nếu đại từ làm tân ngữ (sau nó có chủ ngữ khác), bỏ được để câu ngắn gọn hơn",
+    "Tránh lỗi thêm chủ ngữ thừa như she, it, there sau đại từ quan hệ",
+    "Áp dụng ngay vào câu nói hàng ngày về người, vật, địa điểm xung quanh bạn"
+  ],
+  "scenes": [
+    {
+      "id": "scene_01",
+      "kind": "intro",
+      "headline": "Mệnh đề quan hệ",
+      "subheadline": "Nối câu ngắn thành câu dài, tự nhiên hơn",
+      "voiceover": "Bạn có thắc mắc tại sao người bản xứ nói câu dài mà vẫn rõ ràng? Bí quyết là mệnh đề quan hệ. Hôm nay mình sẽ chỉ bạn cách dùng who, which, that, where, when để nối ý một cách tự nhiên nhất.",
+      "visual_type": "whiteboard_title",
+      "visual": {
+        "main_text": "Relative Clauses",
+        "compare_text": "Nối 2 câu ngắn → 1 câu dài, mượt mà",
+        "note": "Dùng hàng ngày trong nói và viết"
+      },
+      "examples": [],
+      "practice": null
+    },
+    {
+      "id": "scene_02",
+      "kind": "learning_goals",
+      "headline": "Bạn sẽ học được gì?",
+      "subheadline": "4 kỹ năng cụ thể sau 3 phút",
+      "voiceover": "Sau video này, bạn sẽ phân biệt được who, which, that dùng khi nào. Biết lúc nào bỏ được đại từ quan hệ để câu ngắn gọn hơn. Tránh được lỗi thừa chủ ngữ mà người Việt hay mắc. Và quan trọng nhất, áp dụng ngay vào câu nói hàng ngày.",
+      "visual_type": "learning_goals",
+      "visual": {
+        "goals": [
+          "Phân biệt who / which / that / where / when",
+          "Biết khi nào bỏ được đại từ",
+          "Tránh lỗi thừa chủ ngữ",
+          "Áp dụng vào giao tiếp thực tế"
+        ]
+      },
+      "examples": [],
+      "practice": null
+    },
+    {
+      "id": "scene_03",
+      "kind": "rule",
+      "headline": "Quy tắc chọn đại từ quan hệ",
+      "subheadline": "Dựa vào danh từ phía trước",
+      "voiceover": "Quy tắc đơn giản: Nếu danh từ trước là người, dùng who hoặc that. Nếu là vật, con vật, dùng which hoặc that. Nếu là địa điểm, dùng where. Nếu là thời gian, dùng when. That thì dùng được cho cả người và vật, nên rất linh hoạt.",
+      "visual_type": "rule_board",
+      "visual": {
+        "rule": "Chọn đại từ dựa vào danh từ đứng trước",
+        "markers": [
+          "Người → who / that",
+          "Vật / động vật → which / that",
+          "Địa điểm → where",
+          "Thời gian → when"
+        ]
+      },
+      "examples": [
+        {
+          "en": "The woman who lives next door is a teacher.",
+          "vi": "Người phụ nữ sống nhà bên là giáo viên.",
+          "note": "Người → dùng who"
+        },
+        {
+          "en": "The book which I bought yesterday is interesting.",
+          "vi": "Cuốn sách tôi mua hôm qua rất thú vị.",
+          "note": "Vật → dùng which"
+        },
+        {
+          "en": "The café where we met is closed now.",
+          "vi": "Quán cà phê nơi chúng ta gặp nhau giờ đóng cửa rồi.",
+          "note": "Địa điểm → dùng where"
+        }
+      ],
+      "practice": null
+    },
+    {
+      "id": "scene_04",
+      "kind": "example",
+      "headline": "Who vs Which vs That",
+      "subheadline": "So sánh cách dùng trong câu thực tế",
+      "voiceover": "Hãy xem ví dụ cụ thể. The guy who called you is my brother – người gọi cho bạn là anh tôi. The phone which I lost was expensive – cái điện thoại tôi làm mất đắt lắm. The movie that we watched was boring – bộ phim chúng ta xem nhàm chán. Thấy chưa? That dùng được cho cả người và vật.",
+      "visual_type": "example_table",
+      "visual": {
+        "columns": [
+          "Đại từ",
+          "Ví dụ",
+          "Dịch nghĩa"
+        ],
+        "rows": [
+          [
+            "who",
+            "The guy who called you",
+            "Người gọi cho bạn"
+          ],
+          [
+            "which",
+            "The phone which I lost",
+            "Cái điện thoại tôi mất"
+          ],
+          [
+            "that",
+            "The movie that we watched",
+            "Bộ phim chúng ta xem"
+          ],
+          [
+            "where",
+            "The park where we play",
+            "Công viên chúng ta chơi"
+          ]
+        ]
+      },
+      "examples": [
+        {
+          "en": "The guy who called you is my brother.",
+          "vi": "Người gọi cho bạn là anh tôi.",
+          "note": "who thay cho the guy"
+        },
+        {
+          "en": "The phone which I lost was expensive.",
+          "vi": "Cái điện thoại tôi làm mất đắt lắm.",
+          "note": "which thay cho the phone"
+        },
+        {
+          "en": "The movie that we watched was boring.",
+          "vi": "Bộ phim chúng ta xem nhàm chán.",
+          "note": "that dùng cho vật, linh hoạt nhất"
+        }
+      ],
+      "practice": null
+    },
+    {
+      "id": "scene_05",
+      "kind": "rule",
+      "headline": "Khi nào bỏ được đại từ?",
+      "subheadline": "Nếu đại từ làm tân ngữ, bỏ được",
+      "voiceover": "Mẹo quan trọng: Nếu sau đại từ quan hệ là chủ ngữ khác, tức là đại từ đang làm tân ngữ, bạn bỏ được nó. Ví dụ: The book I bought – tôi bỏ which hoặc that vì sau nó là I. Nhưng The book which is on the table – không bỏ được vì which là chủ ngữ của is.",
+      "visual_type": "rule_board",
+      "visual": {
+        "formula": "Đại từ làm tân ngữ → Bỏ được",
+        "signals": [
+          "Sau đại từ + chủ ngữ khác → Bỏ OK",
+          "Sau đại từ + động từ → Không bỏ"
+        ]
+      },
+      "examples": [
+        {
+          "en": "The book (which) I bought is good.",
+          "vi": "Cuốn sách tôi mua hay lắm.",
+          "note": "Bỏ which vì sau nó là I (chủ ngữ khác)"
+        },
+        {
+          "en": "The book which is on the table is mine.",
+          "vi": "Cuốn sách ở trên bàn là của tôi.",
+          "note": "Không bỏ which vì nó là chủ ngữ của is"
+        },
+        {
+          "en": "The person (that) you met yesterday is my boss.",
+          "vi": "Người bạn gặp hôm qua là sếp tôi.",
+          "note": "Bỏ that vì sau nó là you"
+        }
+      ],
+      "practice": null
+    },
+    {
+      "id": "scene_06",
+      "kind": "mistake",
+      "headline": "Lỗi thường gặp",
+      "subheadline": "Thừa chủ ngữ sau đại từ quan hệ",
+      "voiceover": "Lỗi phổ biến nhất: Thêm chủ ngữ thừa sau đại từ quan hệ. Ví dụ sai: The girl who she is my friend. Đúng phải là: The girl who is my friend. Vì who đã thay cho the girl rồi, không cần she nữa. Hoặc: The book which it is on the table – sai. Đúng là: The book which is on the table.",
+      "visual_type": "mistake_correction",
+      "visual": {
+        "mistakes": [
+          {
+            "wrong": "The girl who she is my friend",
+            "right": "The girl who is my friend",
+            "explanation": "who đã thay the girl, không cần she"
+          },
+          {
+            "wrong": "The book which it is on the table",
+            "right": "The book which is on the table",
+            "explanation": "which đã thay the book, bỏ it"
+          },
+          {
+            "wrong": "The place where we went there",
+            "right": "The place where we went",
+            "explanation": "where đã chỉ địa điểm, bỏ there"
+          }
+        ]
+      },
+      "examples": [],
+      "practice": null
+    },
+    {
+      "id": "scene_07",
+      "kind": "application",
+      "headline": "Áp dụng thực tế",
+      "subheadline": "Nối câu ngắn thành câu dài tự nhiên",
+      "voiceover": "Giờ thử áp dụng nhé. Bạn có hai câu: I met a girl. She works at the bank. Nối lại: I met a girl who works at the bank. Hoặc: This is the restaurant. We had dinner there. Nối thành: This is the restaurant where we had dinner. Thử tự tạo câu tương tự với người hoặc địa điểm bạn biết.",
+      "visual_type": "application_board",
+      "visual": {
+        "scenario": "Nối 2 câu ngắn thành 1 câu dài",
+        "example": "I met a girl. + She works at the bank. → I met a girl who works at the bank.",
+        "signals_highlighted": [
+          "who thay cho she",
+          "Bỏ she vì đã có who"
+        ],
+        "prompt": "Thử nối: This is the restaurant. + We had dinner there."
+      },
+      "examples": [
+        {
+          "en": "I met a girl who works at the bank.",
+          "vi": "Tôi gặp một cô gái làm việc ở ngân hàng.",
+          "note": "who nối 2 câu, thay cho she"
+        },
+        {
+          "en": "This is the restaurant where we had dinner.",
+          "vi": "Đây là nhà hàng chúng ta ăn tối.",
+          "note": "where thay cho there"
+        }
+      ],
+      "practice": null
+    },
+    {
+      "id": "scene_08",
+      "kind": "application",
+      "headline": "Luyện tập nhanh",
+      "subheadline": "Tự tạo câu với người và vật xung quanh",
+      "voiceover": "Bây giờ hãy tự tạo câu. Nghĩ về một người bạn quen: My friend who lives in Hanoi. Hoặc một món đồ bạn có: The laptop which I use every day. Hoặc một nơi bạn thích: The coffee shop where I study. Càng luyện nhiều, càng nói tự nhiên.",
+      "visual_type": "application_board",
+      "visual": {
+        "scenario": "Tự tạo câu với đời sống hàng ngày",
+        "example": "My friend who lives in Hanoi is a designer.",
+        "signals_highlighted": [
+          "who → người",
+          "which → vật",
+          "where → địa điểm"
+        ],
+        "tip": "Nghĩ về người, vật, nơi chốn xung quanh bạn"
+      },
+      "examples": [
+        {
+          "en": "My friend who lives in Hanoi is a designer.",
+          "vi": "Bạn tôi sống ở Hà Nội là nhà thiết kế.",
+          "note": "who nối thông tin về người"
+        },
+        {
+          "en": "The laptop which I use every day is very fast.",
+          "vi": "Cái laptop tôi dùng hàng ngày rất nhanh.",
+          "note": "which nối thông tin về vật"
+        },
+        {
+          "en": "The coffee shop where I study is quiet.",
+          "vi": "Quán cà phê tôi học yên tĩnh lắm.",
+          "note": "where nối thông tin về địa điểm"
+        }
+      ],
+      "practice": null
+    },
+    {
+      "id": "scene_09",
+      "kind": "recap",
+      "headline": "Tóm tắt nhanh",
+      "subheadline": "Nhớ 4 điểm chính",
+      "voiceover": "Tóm lại nhé: Người dùng who hoặc that, vật dùng which hoặc that. Nếu đại từ làm tân ngữ thì bỏ được. Không thêm chủ ngữ thừa sau đại từ quan hệ. Và quan trọng nhất, luyện tập với câu thực tế hàng ngày. Chúc bạn nói tiếng Anh tự nhiên hơn!",
+      "visual_type": "recap_board",
+      "visual": {
+        "points": [
+          "Người → who/that, Vật → which/that",
+          "Đại từ làm tân ngữ → Bỏ được",
+          "Không thêm chủ ngữ thừa (she, it, there)",
+          "Luyện với câu thực tế mỗi ngày"
+        ]
+      },
+      "examples": [],
+      "practice": null
+    }
+  ]
+}

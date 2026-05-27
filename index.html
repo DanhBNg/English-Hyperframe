@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("assets/fonts/be-vietnam-pro-vietnamese-400-normal.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("assets/fonts/be-vietnam-pro-vietnamese-700-normal.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("assets/fonts/be-vietnam-pro-vietnamese-800-normal.woff2") format("woff2");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Be Vietnam Pro";
+  src: url("assets/fonts/be-vietnam-pro-vietnamese-900-normal.woff2") format("woff2");
+  font-weight: 900;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1080px;
+  height: 1920px;
+  margin: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(30, 64, 175, 0.07) 2px, rgba(248, 250, 247, 0) 2px),
+    linear-gradient(90deg, rgba(30, 64, 175, 0.07) 2px, rgba(248, 250, 247, 0) 2px),
+    #f8faf7;
+  background-size: 44px 44px;
+  color: #102033;
+  font-family: "Be Vietnam Pro", Arial, sans-serif;
+}
+
+#root {
+  position: relative;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background-color: #f8faf7;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(34, 197, 94, 0.18), rgba(248, 250, 247, 0) 360px),
+    radial-gradient(circle at 88% 76%, rgba(249, 115, 22, 0.18), rgba(248, 250, 247, 0) 320px),
+    linear-gradient(rgba(30, 64, 175, 0.065) 2px, rgba(248, 250, 247, 0) 2px),
+    linear-gradient(90deg, rgba(30, 64, 175, 0.065) 2px, rgba(248, 250, 247, 0) 2px),
+    #f8faf7;
+  background-size: auto, auto, 44px 44px, 44px 44px, auto;
+}
+
+.scene-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scene-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 80px 72px 178px;
+  gap: 28px;
+}
+
+.headline {
+  width: 100%;
+  max-width: 940px;
+  padding: 28px 34px 32px;
+  border: 5px solid #102033;
+  border-left: 18px solid #1e40af;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 12px 12px 0 rgba(30, 64, 175, 0.16);
+  color: #102033;
+  font-size: 68px;
+  font-weight: 900;
+  line-height: 1.03;
+}
+
+.subheadline {
+  max-width: 860px;
+  color: #31506f;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.visual-zone {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  min-height: 0;
+}
+
+.hero-pair,
+.correction-board,
+.application-board {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.sentence,
+.formula-strip,
+.teacher-note,
+.example-table,
+.goal-row,
+.application-board,
+.correction-board,
+.bubble,
+.recap-list div,
+.pronounce-word,
+.mindmap-center,
+.mindmap-node {
+  border: 4px solid #1e40af;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 10px 10px 0 rgba(30, 64, 175, 0.14);
+}
+
+.sentence {
+  padding: 34px 38px;
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.sentence-good {
+  border-color: #15803d;
+  color: #14532d;
+}
+
+.sentence-compare,
+.wrong {
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+.teacher-note {
+  align-self: flex-end;
+  max-width: 740px;
+  padding: 30px 34px;
+  border-color: #f97316;
+  color: #7c2d12;
+  font-size: 31px;
+  font-weight: 800;
+  line-height: 1.28;
+  transform: rotate(-1.2deg);
+}
+
+.goal-stack,
+.recap-list,
+.dialogue,
+.drill-row,
+.chip-row,
+.mini-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.goal-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 28px 32px;
+  font-size: 34px;
+}
+
+.goal-row span {
+  display: grid;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.formula-strip {
+  padding: 34px 38px;
+  border-color: #15803d;
+  color: #14532d;
+  font-size: 46px;
+  font-weight: 900;
+}
+
+.chip-row {
+  flex-flow: row wrap;
+}
+
+.chip-row span,
+.drill-row span {
+  padding: 18px 22px;
+  border: 3px solid #f97316;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #7c2d12;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.example-table {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  overflow: hidden;
+  border-color: #102033;
+  font-size: 25px;
+}
+
+.example-table div {
+  min-height: 74px;
+  padding: 18px;
+  border-right: 2px solid #9eb2ca;
+  border-bottom: 2px solid #9eb2ca;
+  line-height: 1.22;
+}
+
+.example-table .table-head {
+  background: #1e40af;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.example-table .en {
+  color: #14532d;
+  font-weight: 900;
+}
+
+.timeline-line {
+  position: relative;
+  height: 240px;
+  border-bottom: 8px solid #1e40af;
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.timeline-line span {
+  position: absolute;
+  bottom: 24px;
+}
+
+.timeline-line .past {
+  left: 0;
+}
+
+.timeline-line .now {
+  left: 48%;
+  color: #dc2626;
+}
+
+.timeline-line .future {
+  right: 0;
+}
+
+.pin {
+  position: absolute;
+  bottom: -20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f97316;
+}
+
+.pin-a {
+  left: 22%;
+}
+
+.pin-b {
+  left: 55%;
+  background: #22c55e;
+}
+
+.correction-board {
+  padding: 36px;
+  border-color: #102033;
+}
+
+.wrong,
+.right,
+.why {
+  padding: 24px 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.right {
+  color: #14532d;
+}
+
+.why {
+  color: #31506f;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.application-title {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.18;
+}
+
+.bubble {
+  max-width: 760px;
+  padding: 24px 30px;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.22;
+}
+
+.bubble.b {
+  align-self: flex-end;
+  border-color: #f97316;
+}
+
+.pronounce-word {
+  padding: 46px;
+  border-color: #15803d;
+  color: #14532d;
+  font-size: 74px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.stress {
+  color: #1e40af;
+  font-size: 44px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.recap-list div {
+  position: relative;
+  padding: 24px 30px;
+  border-color: #15803d;
+  color: #14532d;
+  font-size: 31px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.recap-list div::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 16px;
+  border-radius: 50%;
+  background: #22c55e;
+  vertical-align: 2px;
+}
+
+.mindmap {
+  position: relative;
+  min-height: 620px;
+}
+
+.mindmap::before,
+.mindmap::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 50%;
+  height: 4px;
+  background: #1e40af;
+  transform: rotate(18deg);
+}
+
+.mindmap::after {
+  transform: rotate(-18deg);
+}
+
+.mindmap-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 360px;
+  padding: 32px;
+  border-color: #1e40af;
+  color: #102033;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.16;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.mindmap-node {
+  position: absolute;
+  z-index: 2;
+  width: 285px;
+  padding: 22px 24px;
+  border-color: #15803d;
+  color: #14532d;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.mindmap-node.node-1 {
+  left: 18px;
+  top: 54px;
+}
+
+.mindmap-node.node-2 {
+  right: 24px;
+  top: 70px;
+  border-color: #f97316;
+  color: #7c2d12;
+}
+
+.mindmap-node.node-3 {
+  left: 32px;
+  bottom: 92px;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+.mindmap-node.node-4 {
+  right: 42px;
+  bottom: 74px;
+}
+
+.mindmap-node.node-5 {
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  border-color: #1e40af;
+  color: #1e40af;
+}
+
+.application-board {
+  padding: 34px;
+  border-color: #102033;
+}
+
+.application-step {
+  padding: 22px 26px;
+  border-left: 8px solid #1e40af;
+  background: #f8faf7;
+  color: #102033;
+  font-size: 31px;
+  font-weight: 800;
+  line-height: 1.22;
+}
+
+.mini-examples {
+  gap: 16px;
+}
+
+.mini-examples div {
+  padding: 20px 24px;
+  border-left: 8px solid #22c55e;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 28px;
+  line-height: 1.22;
+}
+
+.mini-examples strong,
+.mini-examples span {
+  display: block;
+}
+
+.subtitle {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  bottom: 54px;
+  z-index: 5;
+  min-height: 112px;
+  padding: 24px 30px;
+  border: 3px solid rgba(30, 64, 175, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #102033;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.28;
+  text-align: center;
+}
+
+.transition-wipe {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+}
+
+.transition-panel {
+  position: absolute;
+  inset: 0;
+  background: #1e40af;
+  opacity: 0;
+  visibility: hidden;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+</style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="182" data-width="1080" data-height="1920">
+      <section id="scene_01" class="clip scene" data-start="0" data-duration="15" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Mệnh đề quan hệ</h1>
+        <div class="subheadline">Nối câu ngắn thành câu dài, tự nhiên hơn</div>
+        <div class="visual-zone">
+    <div class="hero-pair">
+      <div class="sentence sentence-good">Relative Clauses</div>
+      <div class="sentence sentence-compare">Nối 2 câu ngắn → 1 câu dài, mượt mà</div>
+    </div>
+    <div class="teacher-note">Dùng hàng ngày trong nói và viết</div>
+  </div>
+      </div>
+    </div>
+    <div id="scene_01_sub_1" class="clip subtitle" data-start="0" data-duration="3.74" data-track-index="30">Bạn có thắc mắc tại sao người bản xứ nói câu dài mà vẫn rõ ràng?</div>
+<div id="scene_01_sub_2" class="clip subtitle" data-start="3.75" data-duration="3.74" data-track-index="30">Bí quyết là mệnh đề quan hệ.</div>
+<div id="scene_01_sub_3" class="clip subtitle" data-start="7.5" data-duration="3.74" data-track-index="30">Hôm nay mình sẽ chỉ bạn cách dùng who, which, that, where, when để nối ý một cách tự</div>
+<div id="scene_01_sub_4" class="clip subtitle" data-start="11.25" data-duration="3.74" data-track-index="30">nhiên nhất.</div>
+  </section>
+<section id="scene_02" class="clip scene" data-start="15" data-duration="18" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Bạn sẽ học được gì?</h1>
+        <div class="subheadline">4 kỹ năng cụ thể sau 3 phút</div>
+        <div class="visual-zone"><div class="goal-stack"><div class="goal-row"><span>1</span><strong>Phân biệt who / which / that / where / when</strong></div><div class="goal-row"><span>2</span><strong>Biết khi nào bỏ được đại từ</strong></div><div class="goal-row"><span>3</span><strong>Tránh lỗi thừa chủ ngữ</strong></div><div class="goal-row"><span>4</span><strong>Áp dụng vào giao tiếp thực tế</strong></div></div></div>
+      </div>
+    </div>
+    <div id="scene_02_sub_1" class="clip subtitle" data-start="15" data-duration="4.49" data-track-index="30">Sau video này, bạn sẽ phân biệt được who, which, that dùng khi nào.</div>
+<div id="scene_02_sub_2" class="clip subtitle" data-start="19.5" data-duration="4.49" data-track-index="30">Biết lúc nào bỏ được đại từ quan hệ để câu ngắn gọn hơn.</div>
+<div id="scene_02_sub_3" class="clip subtitle" data-start="24" data-duration="4.49" data-track-index="30">Tránh được lỗi thừa chủ ngữ mà người Việt hay mắc.</div>
+<div id="scene_02_sub_4" class="clip subtitle" data-start="28.5" data-duration="4.49" data-track-index="30">Và quan trọng nhất, áp dụng ngay vào câu nói hàng ngày.</div>
+  </section>
+<section id="scene_03" class="clip scene" data-start="33" data-duration="20" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Quy tắc chọn đại từ quan hệ</h1>
+        <div class="subheadline">Dựa vào danh từ phía trước</div>
+        <div class="visual-zone">
+    <div class="formula-strip">Chọn đại từ dựa vào danh từ đứng trước</div>
+    <div class="chip-row"><span>Người → who / that</span><span>Vật / động vật → which / that</span><span>Địa điểm → where</span><span>Thời gian → when</span></div>
+    <div class="mini-examples"><div><strong>The woman who lives next door is a teacher.</strong><span>Người phụ nữ sống nhà bên là giáo viên.</span></div><div><strong>The book which I bought yesterday is interesting.</strong><span>Cuốn sách tôi mua hôm qua rất thú vị.</span></div></div>
+  </div>
+      </div>
+    </div>
+    <div id="scene_03_sub_1" class="clip subtitle" data-start="33" data-duration="3.99" data-track-index="30">Quy tắc đơn giản: Nếu danh từ trước là người, dùng who hoặc that.</div>
+<div id="scene_03_sub_2" class="clip subtitle" data-start="37" data-duration="3.99" data-track-index="30">Nếu là vật, con vật, dùng which hoặc that.</div>
+<div id="scene_03_sub_3" class="clip subtitle" data-start="41" data-duration="3.99" data-track-index="30">Nếu là địa điểm, dùng where.</div>
+<div id="scene_03_sub_4" class="clip subtitle" data-start="45" data-duration="3.99" data-track-index="30">Nếu là thời gian, dùng when.</div>
+<div id="scene_03_sub_5" class="clip subtitle" data-start="49" data-duration="3.99" data-track-index="30">That thì dùng được cho cả người và vật, nên rất linh hoạt.</div>
+  </section>
+<section id="scene_04" class="clip scene" data-start="53" data-duration="22" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Who vs Which vs That</h1>
+        <div class="subheadline">So sánh cách dùng trong câu thực tế</div>
+        <div class="visual-zone">
+    <div class="example-table">
+      <div class="table-head">Đại từ</div><div class="table-head">Ví dụ</div><div class="table-head">Dịch nghĩa</div>
+      <div class="en">who</div><div>The guy who called you</div><div>Người gọi cho bạn</div><div class="en">which</div><div>The phone which I lost</div><div>Cái điện thoại tôi mất</div><div class="en">that</div><div>The movie that we watched</div><div>Bộ phim chúng ta xem</div>
+    </div>
+  </div>
+      </div>
+    </div>
+    <div id="scene_04_sub_1" class="clip subtitle" data-start="53" data-duration="3.657" data-track-index="30">Hãy xem ví dụ cụ thể.</div>
+<div id="scene_04_sub_2" class="clip subtitle" data-start="56.667" data-duration="3.656" data-track-index="30">The guy who called you is my brother – người gọi cho bạn là anh tôi.</div>
+<div id="scene_04_sub_3" class="clip subtitle" data-start="60.333" data-duration="3.657" data-track-index="30">The phone which I lost was expensive – cái điện thoại tôi làm mất đắt lắm.</div>
+<div id="scene_04_sub_4" class="clip subtitle" data-start="64" data-duration="3.657" data-track-index="30">The movie that we watched was boring – bộ phim chúng ta xem nhàm chán.</div>
+<div id="scene_04_sub_5" class="clip subtitle" data-start="67.667" data-duration="3.656" data-track-index="30">Thấy chưa?</div>
+<div id="scene_04_sub_6" class="clip subtitle" data-start="71.333" data-duration="3.657" data-track-index="30">That dùng được cho cả người và vật.</div>
+  </section>
+<section id="scene_05" class="clip scene" data-start="75" data-duration="18" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Khi nào bỏ được đại từ?</h1>
+        <div class="subheadline">Nếu đại từ làm tân ngữ, bỏ được</div>
+        <div class="visual-zone">
+    <div class="formula-strip">Đại từ làm tân ngữ → Bỏ được</div>
+    <div class="chip-row"><span>Sau đại từ + chủ ngữ khác → Bỏ OK</span><span>Sau đại từ + động từ → Không bỏ</span></div>
+    <div class="mini-examples"><div><strong>The book (which) I bought is good.</strong><span>Cuốn sách tôi mua hay lắm.</span></div><div><strong>The book which is on the table is mine.</strong><span>Cuốn sách ở trên bàn là của tôi.</span></div></div>
+  </div>
+      </div>
+    </div>
+    <div id="scene_05_sub_1" class="clip subtitle" data-start="75" data-duration="4.49" data-track-index="30">Mẹo quan trọng: Nếu sau đại từ quan hệ là chủ ngữ khác, tức là đại từ đang làm tân ngữ,</div>
+<div id="scene_05_sub_2" class="clip subtitle" data-start="79.5" data-duration="4.49" data-track-index="30">bạn bỏ được nó.</div>
+<div id="scene_05_sub_3" class="clip subtitle" data-start="84" data-duration="4.49" data-track-index="30">Ví dụ: The book I bought – tôi bỏ which hoặc that vì sau nó là I.</div>
+<div id="scene_05_sub_4" class="clip subtitle" data-start="88.5" data-duration="4.49" data-track-index="30">Nhưng The book which is on the table – không bỏ được vì which là chủ ngữ của is.</div>
+  </section>
+<section id="scene_06" class="clip scene" data-start="93" data-duration="25" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Lỗi thường gặp</h1>
+        <div class="subheadline">Thừa chủ ngữ sau đại từ quan hệ</div>
+        <div class="visual-zone">
+    <div class="correction-board">
+      <div class="wrong">Sai: The girl who she is my friend</div>
+      <div class="right">Đúng: The girl who is my friend</div>
+      <div class="why">who đã thay the girl, không cần she</div>
+    </div>
+  </div>
+      </div>
+    </div>
+    <div id="scene_06_sub_1" class="clip subtitle" data-start="93" data-duration="4.157" data-track-index="30">Lỗi phổ biến nhất: Thêm chủ ngữ thừa sau đại từ quan hệ.</div>
+<div id="scene_06_sub_2" class="clip subtitle" data-start="97.167" data-duration="4.156" data-track-index="30">Ví dụ sai: The girl who she is my friend.</div>
+<div id="scene_06_sub_3" class="clip subtitle" data-start="101.333" data-duration="4.157" data-track-index="30">Đúng phải là: The girl who is my friend.</div>
+<div id="scene_06_sub_4" class="clip subtitle" data-start="105.5" data-duration="4.157" data-track-index="30">Vì who đã thay cho the girl rồi, không cần she nữa.</div>
+<div id="scene_06_sub_5" class="clip subtitle" data-start="109.667" data-duration="4.156" data-track-index="30">Hoặc: The book which it is on the table – sai.</div>
+<div id="scene_06_sub_6" class="clip subtitle" data-start="113.833" data-duration="4.157" data-track-index="30">Đúng là: The book which is on the table.</div>
+  </section>
+<section id="scene_07" class="clip scene" data-start="118" data-duration="25" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Áp dụng thực tế</h1>
+        <div class="subheadline">Nối câu ngắn thành câu dài tự nhiên</div>
+        <div class="visual-zone"><div class="application-board">
+    <div class="application-title">Nối 2 câu ngắn thành 1 câu dài</div>
+    <div class="application-step">I met a girl. + She works at the bank. → I met a girl who works at the bank.</div><div class="application-step">Tín hiệu: who thay cho she</div><div class="application-step">Tín hiệu: Bỏ she vì đã có who</div><div class="application-step">Thử nối: This is the restaurant. + We had dinner there.</div>
+  </div></div>
+      </div>
+    </div>
+    <div id="scene_07_sub_1" class="clip subtitle" data-start="118" data-duration="3.115" data-track-index="30">Giờ thử áp dụng nhé.</div>
+<div id="scene_07_sub_2" class="clip subtitle" data-start="121.125" data-duration="3.115" data-track-index="30">Bạn có hai câu: I met a girl.</div>
+<div id="scene_07_sub_3" class="clip subtitle" data-start="124.25" data-duration="3.115" data-track-index="30">She works at the bank.</div>
+<div id="scene_07_sub_4" class="clip subtitle" data-start="127.375" data-duration="3.115" data-track-index="30">Nối lại: I met a girl who works at the bank.</div>
+<div id="scene_07_sub_5" class="clip subtitle" data-start="130.5" data-duration="3.115" data-track-index="30">Hoặc: This is the restaurant.</div>
+<div id="scene_07_sub_6" class="clip subtitle" data-start="133.625" data-duration="3.115" data-track-index="30">We had dinner there.</div>
+<div id="scene_07_sub_7" class="clip subtitle" data-start="136.75" data-duration="3.115" data-track-index="30">Nối thành: This is the restaurant where we had dinner.</div>
+<div id="scene_07_sub_8" class="clip subtitle" data-start="139.875" data-duration="3.115" data-track-index="30">Thử tự tạo câu tương tự với người hoặc địa điểm bạn biết.</div>
+  </section>
+<section id="scene_08" class="clip scene" data-start="143" data-duration="20" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Luyện tập nhanh</h1>
+        <div class="subheadline">Tự tạo câu với người và vật xung quanh</div>
+        <div class="visual-zone"><div class="application-board">
+    <div class="application-title">Tự tạo câu với đời sống hàng ngày</div>
+    <div class="application-step">My friend who lives in Hanoi is a designer.</div><div class="application-step">Tín hiệu: who → người</div><div class="application-step">Tín hiệu: which → vật</div><div class="application-step">Tín hiệu: where → địa điểm</div>
+  </div></div>
+      </div>
+    </div>
+    <div id="scene_08_sub_1" class="clip subtitle" data-start="143" data-duration="3.99" data-track-index="30">Bây giờ hãy tự tạo câu.</div>
+<div id="scene_08_sub_2" class="clip subtitle" data-start="147" data-duration="3.99" data-track-index="30">Nghĩ về một người bạn quen: My friend who lives in Hanoi.</div>
+<div id="scene_08_sub_3" class="clip subtitle" data-start="151" data-duration="3.99" data-track-index="30">Hoặc một món đồ bạn có: The laptop which I use every day.</div>
+<div id="scene_08_sub_4" class="clip subtitle" data-start="155" data-duration="3.99" data-track-index="30">Hoặc một nơi bạn thích: The coffee shop where I study.</div>
+<div id="scene_08_sub_5" class="clip subtitle" data-start="159" data-duration="3.99" data-track-index="30">Càng luyện nhiều, càng nói tự nhiên.</div>
+  </section>
+<section id="scene_09" class="clip scene" data-start="163" data-duration="19" data-track-index="1">
+    <div class="scene-frame">
+      <div class="scene-content">
+        <h1 class="headline">Tóm tắt nhanh</h1>
+        <div class="subheadline">Nhớ 4 điểm chính</div>
+        <div class="visual-zone"><div class="recap-list"><div>Người → who/that, Vật → which/that</div><div>Đại từ làm tân ngữ → Bỏ được</div><div>Không thêm chủ ngữ thừa (she, it, there)</div><div>Luyện với câu thực tế mỗi ngày</div><div>Chọn đại từ dựa vào danh từ: người dùng who/that, vật dùng which/that, địa điểm dùng where, thời gian dùng when</div></div></div>
+      </div>
+    </div>
+    <div id="scene_09_sub_1" class="clip subtitle" data-start="163" data-duration="3.79" data-track-index="30">Tóm lại nhé: Người dùng who hoặc that, vật dùng which hoặc that.</div>
+<div id="scene_09_sub_2" class="clip subtitle" data-start="166.8" data-duration="3.79" data-track-index="30">Nếu đại từ làm tân ngữ thì bỏ được.</div>
+<div id="scene_09_sub_3" class="clip subtitle" data-start="170.6" data-duration="3.79" data-track-index="30">Không thêm chủ ngữ thừa sau đại từ quan hệ.</div>
+<div id="scene_09_sub_4" class="clip subtitle" data-start="174.4" data-duration="3.79" data-track-index="30">Và quan trọng nhất, luyện tập với câu thực tế hàng ngày.</div>
+<div id="scene_09_sub_5" class="clip subtitle" data-start="178.2" data-duration="3.79" data-track-index="30">Chúc bạn nói tiếng Anh tự nhiên hơn!</div>
+  </section>
+      <audio id="scene_01_audio" data-start="0" data-duration="15" data-track-index="20" src="assets/audio/scene_01.mp3" data-volume="1"></audio>
+<audio id="scene_02_audio" data-start="15" data-duration="18" data-track-index="20" src="assets/audio/scene_02.mp3" data-volume="1"></audio>
+<audio id="scene_03_audio" data-start="33" data-duration="20" data-track-index="20" src="assets/audio/scene_03.mp3" data-volume="1"></audio>
+<audio id="scene_04_audio" data-start="53" data-duration="22" data-track-index="20" src="assets/audio/scene_04.mp3" data-volume="1"></audio>
+<audio id="scene_05_audio" data-start="75" data-duration="18" data-track-index="20" src="assets/audio/scene_05.mp3" data-volume="1"></audio>
+<audio id="scene_06_audio" data-start="93" data-duration="25" data-track-index="20" src="assets/audio/scene_06.mp3" data-volume="1"></audio>
+<audio id="scene_07_audio" data-start="118" data-duration="25" data-track-index="20" src="assets/audio/scene_07.mp3" data-volume="1"></audio>
+<audio id="scene_08_audio" data-start="143" data-duration="20" data-track-index="20" src="assets/audio/scene_08.mp3" data-volume="1"></audio>
+<audio id="scene_09_audio" data-start="163" data-duration="19" data-track-index="20" src="assets/audio/scene_09.mp3" data-volume="1"></audio>
+      <div id="transition_1" class="clip transition-wipe" data-start="14.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_2" class="clip transition-wipe" data-start="32.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_3" class="clip transition-wipe" data-start="52.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_4" class="clip transition-wipe" data-start="74.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_5" class="clip transition-wipe" data-start="92.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_6" class="clip transition-wipe" data-start="117.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_7" class="clip transition-wipe" data-start="142.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+<div id="transition_8" class="clip transition-wipe" data-start="162.72" data-duration="0.56" data-track-index="40"><div class="transition-panel"></div></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      
+      tl.set("#scene_01 .scene-frame", { opacity: 1, visibility: "visible" }, 0);
+      tl.fromTo("#scene_01 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 0.18);
+      tl.fromTo("#scene_01 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 0.36);
+      tl.fromTo("#scene_01 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 2.4);
+      
+      tl.set("#scene_01 .scene-frame", { opacity: 0, visibility: "hidden" }, 15);
+
+      tl.set("#scene_02 .scene-frame", { opacity: 1, visibility: "visible" }, 15);
+      tl.fromTo("#scene_02 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 15.18);
+      tl.fromTo("#scene_02 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 15.36);
+      tl.fromTo("#scene_02 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 17.88);
+      
+      tl.set("#scene_02 .scene-frame", { opacity: 0, visibility: "hidden" }, 33);
+
+      tl.set("#scene_03 .scene-frame", { opacity: 1, visibility: "visible" }, 33);
+      tl.fromTo("#scene_03 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 33.18);
+      tl.fromTo("#scene_03 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 33.36);
+      tl.fromTo("#scene_03 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 36.2);
+      
+      tl.set("#scene_03 .scene-frame", { opacity: 0, visibility: "hidden" }, 53);
+
+      tl.set("#scene_04 .scene-frame", { opacity: 1, visibility: "visible" }, 53);
+      tl.fromTo("#scene_04 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 53.18);
+      tl.fromTo("#scene_04 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 53.36);
+      tl.fromTo("#scene_04 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 56.52);
+      
+      tl.set("#scene_04 .scene-frame", { opacity: 0, visibility: "hidden" }, 75);
+
+      tl.set("#scene_05 .scene-frame", { opacity: 1, visibility: "visible" }, 75);
+      tl.fromTo("#scene_05 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 75.18);
+      tl.fromTo("#scene_05 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 75.36);
+      tl.fromTo("#scene_05 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 77.88);
+      
+      tl.set("#scene_05 .scene-frame", { opacity: 0, visibility: "hidden" }, 93);
+
+      tl.set("#scene_06 .scene-frame", { opacity: 1, visibility: "visible" }, 93);
+      tl.fromTo("#scene_06 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 93.18);
+      tl.fromTo("#scene_06 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 93.36);
+      tl.fromTo("#scene_06 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 97);
+      
+      tl.set("#scene_06 .scene-frame", { opacity: 0, visibility: "hidden" }, 118);
+
+      tl.set("#scene_07 .scene-frame", { opacity: 1, visibility: "visible" }, 118);
+      tl.fromTo("#scene_07 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 118.18);
+      tl.fromTo("#scene_07 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 118.36);
+      tl.fromTo("#scene_07 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 122);
+      
+      tl.set("#scene_07 .scene-frame", { opacity: 0, visibility: "hidden" }, 143);
+
+      tl.set("#scene_08 .scene-frame", { opacity: 1, visibility: "visible" }, 143);
+      tl.fromTo("#scene_08 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 143.18);
+      tl.fromTo("#scene_08 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 143.36);
+      tl.fromTo("#scene_08 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 146.2);
+      
+      tl.set("#scene_08 .scene-frame", { opacity: 0, visibility: "hidden" }, 163);
+
+      tl.set("#scene_09 .scene-frame", { opacity: 1, visibility: "visible" }, 163);
+      tl.fromTo("#scene_09 .headline", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out", immediateRender: false }, 163.18);
+      tl.fromTo("#scene_09 .subheadline", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "sine.out", immediateRender: false }, 163.36);
+      tl.fromTo("#scene_09 .visual-zone > *", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power1.out", immediateRender: false }, 166.04);
+      
+      tl.to("#scene_09 .scene-frame", { opacity: 0, duration: 0.55, ease: "power2.in" }, 181.2);
+      tl.set("#scene_09 .scene-frame", { visibility: "hidden" }, 181.75);
+      
+      tl.set("#transition_1 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 14.72);
+      tl.fromTo("#transition_1 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 14.72);
+      tl.to("#transition_1 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 15);
+      tl.set("#transition_1 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 15.28);
+
+      tl.set("#transition_2 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 32.72);
+      tl.fromTo("#transition_2 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 32.72);
+      tl.to("#transition_2 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 33);
+      tl.set("#transition_2 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 33.28);
+
+      tl.set("#transition_3 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 52.72);
+      tl.fromTo("#transition_3 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 52.72);
+      tl.to("#transition_3 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 53);
+      tl.set("#transition_3 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 53.28);
+
+      tl.set("#transition_4 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 74.72);
+      tl.fromTo("#transition_4 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 74.72);
+      tl.to("#transition_4 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 75);
+      tl.set("#transition_4 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 75.28);
+
+      tl.set("#transition_5 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 92.72);
+      tl.fromTo("#transition_5 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 92.72);
+      tl.to("#transition_5 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 93);
+      tl.set("#transition_5 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 93.28);
+
+      tl.set("#transition_6 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 117.72);
+      tl.fromTo("#transition_6 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 117.72);
+      tl.to("#transition_6 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 118);
+      tl.set("#transition_6 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 118.28);
+
+      tl.set("#transition_7 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 142.72);
+      tl.fromTo("#transition_7 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 142.72);
+      tl.to("#transition_7 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 143);
+      tl.set("#transition_7 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 143.28);
+
+      tl.set("#transition_8 .transition-panel", { opacity: 1, visibility: "visible", xPercent: 0 }, 162.72);
+      tl.fromTo("#transition_8 .transition-panel", { scaleX: 0 }, { scaleX: 1, duration: 0.28, ease: "power3.in", immediateRender: false }, 162.72);
+      tl.to("#transition_8 .transition-panel", { xPercent: 100, duration: 0.28, ease: "power3.out" }, 163);
+      tl.set("#transition_8 .transition-panel", { opacity: 0, visibility: "hidden", xPercent: 0, scaleX: 0 }, 163.28);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

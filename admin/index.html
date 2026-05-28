@@ -46,9 +46,18 @@
           <h2>Preview</h2>
           <button id="refresh-preview">Refresh</button>
         </div>
-        <div class="preview-shell">
-          <iframe id="preview-frame" src="/preview"></iframe>
+        <div class="preview-tabs" role="group" aria-label="Preview mode">
+          <button class="active" data-preview-mode="composition">Composition</button>
+          <button data-preview-mode="render">Video đã render</button>
         </div>
+        <div class="preview-shell">
+          <iframe id="preview-frame" src="/preview" title="Composition preview"></iframe>
+          <div id="render-preview" class="render-preview" hidden>
+            <video id="render-video" controls playsinline preload="metadata"></video>
+            <div id="render-empty" class="render-empty">Chưa có video render. Bấm Tạo video và đợi bước render hoàn tất.</div>
+          </div>
+        </div>
+        <a id="render-link" class="render-link" href="#" target="_blank" rel="noreferrer" hidden>Mở video trong tab mới</a>
       </section>
     </main>
     <script type="module" src="/admin/app.js"></script>

@@ -1,5 +1,5 @@
 import { createReadStream } from "node:fs";
-import { readFile, stat, writeFile } from "node:fs/promises";
+import { readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 import { spawn } from "node:child_process";
@@ -28,6 +28,9 @@ const server = createServer(async (req, res) => {
     if (req.method === "GET" && url.pathname === "/admin/style.css") return serveFile(res, "admin/style.css", "text/css");
     if (req.method === "GET" && url.pathname === "/preview") return serveFile(res, "index.html", "text/html");
     if (req.method === "GET" && url.pathname.startsWith("/assets/")) return serveFile(res, url.pathname.slice(1), mime(url.pathname));
+    if (req.method === "GET" && url.pathname.startsWith("/renders/")) {
+      return serveRenderFile(req, res, decodeURIComponent(url.pathname.slice("/renders/".length)));
+    }
     if (req.method === "GET" && url.pathname === "/api/status") return json(res, await getStatus());
     if (req.method === "GET" && url.pathname === "/api/logs") return json(res, { logs });
     if (req.method === "GET" && url.pathname === "/api/lesson") return json(res, await safeJson("data/lesson.json", null));
@@ -123,6 +126,7 @@ function run(command, args) {
 }
 
 async function getStatus() {
+  const renders = await listRenders();
   return {
     ...state,
     files: {
@@ -130,15 +134,29 @@ async function getStatus() {
       audioManifest: await safeJson("data/audio-manifest.json", {}),
       subtitleManifest: await safeJson("data/subtitle-manifest.json", {}),
       timingManifest: await safeJson("data/timing-manifest.json", {}),
-      renders: await listRenders(),
+      renders,
+      latestRender: renders[0] || null,
     },
   };
 }
 
 async function listRenders() {
   try {
-    const { readdir } = await import("node:fs/promises");
-    return (await readdir("renders")).filter((file) => /\.(mp4|webm)$/i.test(file));
+    const files = await readdir("renders");
+    const renderFiles = await Promise.all(
+      files
+        .filter((file) => /\.(mp4|webm)$/i.test(file))
+        .map(async (file) => {
+          const fileStat = await stat(path.join("renders", file));
+          return {
+            name: file,
+            src: `/renders/${encodeURIComponent(file)}`,
+            size: fileStat.size,
+            modifiedAt: fileStat.mtime.toISOString(),
+          };
+        }),
+    );
+    return renderFiles.sort((a, b) => new Date(b.modifiedAt) - new Date(a.modifiedAt));
   } catch {
     return [];
   }
@@ -187,6 +205,55 @@ async function serveFile(res, filePath, contentType) {
   createReadStream(fullPath).pipe(res);
 }
 
+async function serveRenderFile(req, res, filename) {
+  const safeName = path.basename(filename);
+  if (safeName !== filename || !/\.(mp4|webm)$/i.test(safeName)) {
+    res.writeHead(404);
+    res.end("Not found");
+    return;
+  }
+
+  const fullPath = path.resolve("renders", safeName);
+  const fileStat = await stat(fullPath);
+  const contentType = mime(fullPath);
+  const range = req.headers.range;
+
+  if (!range) {
+    res.writeHead(200, {
+      "content-type": contentType,
+      "content-length": fileStat.size,
+      "accept-ranges": "bytes",
+      "cache-control": "no-store",
+    });
+    createReadStream(fullPath).pipe(res);
+    return;
+  }
+
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+  if (!match) {
+    res.writeHead(416, { "content-range": `bytes */${fileStat.size}` });
+    res.end();
+    return;
+  }
+
+  const start = match[1] ? Number(match[1]) : 0;
+  const end = match[2] ? Number(match[2]) : fileStat.size - 1;
+  if (start >= fileStat.size || end >= fileStat.size || start > end) {
+    res.writeHead(416, { "content-range": `bytes */${fileStat.size}` });
+    res.end();
+    return;
+  }
+
+  res.writeHead(206, {
+    "content-type": contentType,
+    "content-length": end - start + 1,
+    "content-range": `bytes ${start}-${end}/${fileStat.size}`,
+    "accept-ranges": "bytes",
+    "cache-control": "no-store",
+  });
+  createReadStream(fullPath, { start, end }).pipe(res);
+}
+
 function json(res, data, status = 200) {
   if (res.headersSent) return;
   res.writeHead(status, { "content-type": "application/json" });
@@ -195,6 +262,8 @@ function json(res, data, status = 200) {
 
 function mime(filePath) {
   if (filePath.endsWith(".mp3")) return "audio/mpeg";
+  if (filePath.endsWith(".mp4")) return "video/mp4";
+  if (filePath.endsWith(".webm")) return "video/webm";
   if (filePath.endsWith(".wav")) return "audio/wav";
   if (filePath.endsWith(".srt")) return "text/plain";
   if (filePath.endsWith(".png")) return "image/png";

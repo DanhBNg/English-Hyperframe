@@ -139,12 +139,14 @@ button:disabled {
 }
 
 .tabs button,
+.preview-tabs button,
 #refresh-preview {
   background: #e8edf5;
   color: #172033;
 }
 
-.tabs button.active {
+.tabs button.active,
+.preview-tabs button.active {
   background: #1e40af;
   color: #ffffff;
 }
@@ -167,7 +169,15 @@ pre {
   flex-direction: column;
 }
 
+.preview-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .preview-shell {
+  position: relative;
   width: min(360px, 100%);
   aspect-ratio: 9 / 16;
   margin: 0 auto;
@@ -180,6 +190,38 @@ iframe {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.render-preview,
+.render-preview video {
+  width: 100%;
+  height: 100%;
+}
+
+.render-preview video {
+  display: block;
+  background: #000000;
+  object-fit: contain;
+}
+
+.render-empty {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  padding: 24px;
+  color: #cbd5e1;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.render-link {
+  display: block;
+  margin: 12px auto 0;
+  color: #1e40af;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
 }
 
 @media (max-width: 1120px) {

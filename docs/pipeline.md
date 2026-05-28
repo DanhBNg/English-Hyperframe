@@ -45,3 +45,7 @@ npm run check
 ```
 
 `npm run check` gồm HyperFrames lint, validate và inspect layout.
+
+## Tài liệu liên quan
+
+- [Luồng kịch bản video học tiếng Anh](luong-kich-ban.md)

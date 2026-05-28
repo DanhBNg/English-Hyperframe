@@ -75,6 +75,7 @@ npm run render
 - [Cài đặt và cấu hình](docs/setup.md)
 - [Biến môi trường](docs/environment.md)
 - [Luồng tạo video](docs/pipeline.md)
+- [Luồng kịch bản](docs/luong-kich-ban.md)
 - [Kiến trúc project](docs/architecture.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Spec dự án gốc](docs/english-knowledge-video-project.md)
